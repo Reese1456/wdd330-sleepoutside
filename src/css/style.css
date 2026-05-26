@@ -99,7 +99,8 @@ p {
   color: var(--tertiary-color);
 }
 
-button {
+button,
+.button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
   color: white;
@@ -108,6 +109,8 @@ button {
   border: 0;
   font-size: var(--large-font);
   cursor: pointer;
+  text-decoration: none;
+  text-align: center;
 }
 
 .divider {
