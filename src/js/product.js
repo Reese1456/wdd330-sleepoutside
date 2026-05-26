@@ -1,5 +1,7 @@
-import { getLocalStorage, setLocalStorage } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
+
+loadHeaderFooter();
 
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("product");
