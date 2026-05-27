@@ -261,6 +261,29 @@ button,
   grid-column: 3;
 }
 
+.cart-card__remove {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: #888;
+  padding: 0 0.3rem;
+  transition: color 0.2s;
+}
+
+.cart-card__remove:hover {
+  color: #c0392b;
+}
+
+/* cart-card needs relative positioning so the button anchors correctly */
+.cart-card {
+  position: relative;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
