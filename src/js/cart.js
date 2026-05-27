@@ -4,5 +4,6 @@ import ShoppingCart from "./ShoppingCart.mjs";
 loadHeaderFooter();
 
 const listElement = document.querySelector(".product-list");
-const cart = new ShoppingCart(listElement);
+const footerElement = document.querySelector(".cart-footer");
+const cart = new ShoppingCart(listElement, footerElement);
 cart.init();

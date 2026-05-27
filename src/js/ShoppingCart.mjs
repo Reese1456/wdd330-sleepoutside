@@ -16,14 +16,28 @@ function cartItemTemplate(item) {
 }
 
 export default class ShoppingCart {
-  constructor(listElement) {
+  constructor(listElement, footerElement) {
     this.listElement = listElement;
+    this.footerElement = footerElement;
   }
 
   renderCart() {
     const cartItems = getLocalStorage("so-cart") || [];
     renderListWithTemplate(cartItemTemplate, this.listElement, cartItems, "afterbegin", true);
     this.addRemoveListeners();
+    this.updateCartFooter(cartItems);
+  }
+
+  updateCartFooter(cartItems) {
+    if (!this.footerElement) return;
+
+    if (cartItems.length > 0) {
+      const total = cartItems.reduce((sum, item) => sum + item.FinalPrice, 0);
+      this.footerElement.querySelector(".cart-total").textContent = `Total: $${total.toFixed(2)}`;
+      this.footerElement.classList.remove("hide");
+    } else {
+      this.footerElement.classList.add("hide");
+    }
   }
 
   addRemoveListeners() {

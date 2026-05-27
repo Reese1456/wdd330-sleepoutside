@@ -284,6 +284,26 @@ button,
   position: relative;
 }
 
+/* utility — hidden by default, shown via JS */
+.hide {
+  display: none;
+}
+
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border-color, #ddd);
+  margin-top: 1rem;
+}
+
+.cart-total {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
