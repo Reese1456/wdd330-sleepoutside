@@ -7,7 +7,7 @@ const params = new URLSearchParams(window.location.search);
 const productId = params.get("product");
 const category = params.get("category") || "tents";
 
-const dataSource = new ProductData(category);
+const dataSource = new ProductData();
 
 function addProductToCart(product) {
   const stored = getLocalStorage("so-cart");
@@ -25,7 +25,7 @@ function renderProductDetails(product) {
   document.querySelector(".product__brand").textContent = product.Brand.Name;
   document.querySelector(".product__name").textContent = product.NameWithoutBrand;
   const img = document.querySelector(".product__image");
-  img.src = product.Image;
+  img.src = product.Images.PrimaryLarge;
   img.alt = product.Name;
   document.querySelector(".product-card__price").textContent = `$${product.FinalPrice}`;
   document.querySelector(".product__color").textContent = product.Colors[0].ColorName;
