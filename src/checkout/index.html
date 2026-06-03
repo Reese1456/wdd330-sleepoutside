@@ -16,8 +16,44 @@
     <header id="main-header" class="divider"></header>
 
     <main class="divider">
-      <section class="products">
-        <h2>Review & Place your Order</h2>
+      <section class="checkout">
+        <h2>Review &amp; Place your Order</h2>
+        <div class="checkout-layout">
+
+          <form id="checkout-form" class="checkout-form">
+            <fieldset>
+              <legend>Customer Name</legend>
+              <label>First Name <input name="fname" required /></label>
+              <label>Last Name <input name="lname" required /></label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Address</legend>
+              <label>Street Address <input name="street" required /></label>
+              <label>City <input name="city" required /></label>
+              <label>State <input name="state" required /></label>
+              <label>Zip Code <input name="zip" id="zip" required /></label>
+            </fieldset>
+
+            <fieldset>
+              <legend>Payment</legend>
+              <label>Credit Card Number <input name="cardNumber" maxlength="16" required /></label>
+              <label>Expiration Date <input name="expiration" placeholder="MM/YY" required /></label>
+              <label>Security Code <input name="code" maxlength="4" required /></label>
+            </fieldset>
+
+            <button type="submit" class="button">Place Order</button>
+          </form>
+
+          <aside class="order-summary">
+            <h3>Order Summary</h3>
+            <p>Subtotal: <span id="summary-subtotal">—</span></p>
+            <p>Tax (6%): <span id="summary-tax">—</span></p>
+            <p>Shipping: <span id="summary-shipping">—</span></p>
+            <p><strong>Order Total: <span id="summary-total">—</span></strong></p>
+          </aside>
+
+        </div>
       </section>
     </main>
 
