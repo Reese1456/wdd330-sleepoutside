@@ -21,12 +21,42 @@ async function addToCartHandler(e) {
   addProductToCart(product);
 }
 
+function buildCarousel(images, altText) {
+  const extraImages = images.ExtraImages;
+  const container = document.querySelector(".product__image-container");
+
+  if (!extraImages || extraImages.length === 0) {
+    container.innerHTML = `<img class="product__image" src="${images.PrimaryLarge}" alt="${altText}" />`;
+    return;
+  }
+
+  const thumbs = [
+    `<img class="product__carousel-thumb active" src="${images.PrimaryMedium}" data-large="${images.PrimaryLarge}" alt="${altText}" />`,
+    ...extraImages.map(
+      (img) =>
+        `<img class="product__carousel-thumb" src="${img.Src}" data-large="${img.Src}" alt="${img.Title}" />`
+    ),
+  ].join("");
+
+  container.innerHTML = `
+    <div class="product__carousel">
+      <img class="product__carousel-main" src="${images.PrimaryLarge}" alt="${altText}" />
+      <div class="product__carousel-thumbs">${thumbs}</div>
+    </div>`;
+
+  container.querySelector(".product__carousel-thumbs").addEventListener("click", (e) => {
+    const thumb = e.target.closest(".product__carousel-thumb");
+    if (!thumb) return;
+    container.querySelector(".product__carousel-main").src = thumb.dataset.large;
+    container.querySelectorAll(".product__carousel-thumb").forEach((t) => t.classList.remove("active"));
+    thumb.classList.add("active");
+  });
+}
+
 function renderProductDetails(product) {
   document.querySelector(".product__brand").textContent = product.Brand.Name;
   document.querySelector(".product__name").textContent = product.NameWithoutBrand;
-  const img = document.querySelector(".product__image");
-  img.src = product.Images.PrimaryLarge;
-  img.alt = product.Name;
+  buildCarousel(product.Images, product.Name);
   document.querySelector(".product-card__price").textContent = `$${product.FinalPrice}`;
   document.querySelector(".product__color").textContent = product.Colors[0].ColorName;
   document.querySelector(".product__description").innerHTML = product.DescriptionHtmlSimple;
