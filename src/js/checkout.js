@@ -20,12 +20,5 @@ document.getElementById("zip").addEventListener("blur", () => {
 
 document.getElementById("checkout-form").addEventListener("submit", async (e) => {
   e.preventDefault();
-  try {
-    const result = await checkout.checkout(e.target);
-    console.log("Order response:", result);
-    alert("Order placed successfully!");
-  } catch (err) {
-    console.error(err);
-    alert("There was a problem placing your order.");
-  }
+  checkout.checkout(e.target);
 });
