@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, loadHeaderFooter, showToast } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 loadHeaderFooter();
@@ -19,6 +19,7 @@ function addProductToCart(product) {
 async function addToCartHandler(e) {
   const product = await dataSource.findProductById(e.target.dataset.id);
   addProductToCart(product);
+  showToast(`${product.NameWithoutBrand} added to cart!`);
 }
 
 function renderProductDetails(product) {

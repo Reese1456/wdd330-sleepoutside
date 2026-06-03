@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, alertMessage } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 function packageItems(items) {
@@ -52,6 +52,13 @@ export default class CheckoutProcess {
     order.tax = this.tax.toFixed(2);
     order.shipping = this.shipping;
     order.items = packageItems(this.cartItems);
-    return await this.services.checkout(order);
+
+    try {
+      await this.services.checkout(order);
+      localStorage.removeItem(this.key);
+      window.location.href = '/checkout/success.html';
+    } catch (err) {
+      alertMessage(err.message);
+    }
   }
 }
