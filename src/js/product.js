@@ -1,5 +1,5 @@
-import { getLocalStorage, setLocalStorage, loadHeaderFooter } from "./utils.mjs";
-import ProductData from "./ProductData.mjs";
+import { getLocalStorage, setLocalStorage, loadHeaderFooter, showToast } from "./utils.mjs";
+import ExternalServices from "./ExternalServices.mjs";
 
 loadHeaderFooter();
 
@@ -7,7 +7,7 @@ const params = new URLSearchParams(window.location.search);
 const productId = params.get("product");
 const category = params.get("category") || "tents";
 
-const dataSource = new ProductData();
+const dataSource = new ExternalServices();
 
 function addProductToCart(product) {
   const stored = getLocalStorage("so-cart");
@@ -19,6 +19,7 @@ function addProductToCart(product) {
 async function addToCartHandler(e) {
   const product = await dataSource.findProductById(e.target.dataset.id);
   addProductToCart(product);
+  showToast(`${product.NameWithoutBrand} added to cart!`);
 }
 
 function buildCarousel(images, altText) {

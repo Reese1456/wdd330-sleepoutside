@@ -47,6 +47,27 @@ export function getParam(param) {
   return urlParams.get(param);
 }
 
+export function showToast(message) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+
+  const toast = document.createElement('p');
+  toast.className = 'toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => toast.remove(), 3000);
+}
+
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement('p');
+  alert.className = 'alert';
+  alert.textContent = typeof message === 'object' ? JSON.stringify(message) : message;
+  alert.addEventListener('click', () => alert.remove());
+  document.querySelector('main').prepend(alert);
+  if (scroll) window.scrollTo(0, 0);
+}
+
 // set a listener for both touchend and click
 export function setClick(selector, callback) {
   qs(selector).addEventListener("touchend", (event) => {
